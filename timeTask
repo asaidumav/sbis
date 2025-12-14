@@ -1,0 +1,60 @@
+# xaml
+<Window x:Name="w1" x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid x:Name="g1">
+        <Button x:Name="b1" Content="" HorizontalAlignment="Center" Height="62" Margin="0,339,0,0" VerticalAlignment="Top" Width="126" Click="Button_Click"/>
+        <TextBlock x:Name="tb1" HorizontalAlignment="Center" Height="72" FontSize ="20"  TextWrapping="Wrap" VerticalAlignment="Center" Width="172"/>
+
+    </Grid>
+</Window>
+
+# cs
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using System.Windows.Threading;
+
+namespace WpfApp1
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        private DispatcherTimer timer;
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        private void Timer_Tick (object sender, EventArgs e)
+        {
+            DateTime now = DateTime.Now;
+
+            tb1.Text = now.ToString("dd.MM.yyyy HH:mm:ss");
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
+}
